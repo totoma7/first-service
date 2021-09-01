@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/first-service")
+@RequestMapping("/")
 @Slf4j
 public class FirstController {
 
@@ -28,6 +28,11 @@ public class FirstController {
         return "welcome first-service";
     }
 
+    @GetMapping("/users")
+    public String users(){
+        return "welcome first-service";
+    }
+
 
     @GetMapping("/message")
     public String message(@RequestHeader("first-request") String header){
@@ -36,6 +41,13 @@ public class FirstController {
     }
     @GetMapping("/check")
     public String check(HttpServletRequest request){
+        log.info("Server port={}",request.getServerPort());
+
+        return String.format("Hi there. This is a message from First Service %s"
+        ,env.getProperty("local.server.port"));
+    }
+     @GetMapping("/health_check")
+        public String health_check(HttpServletRequest request){
         log.info("Server port={}",request.getServerPort());
 
         return String.format("Hi there. This is a message from First Service %s"
