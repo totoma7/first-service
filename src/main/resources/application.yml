@@ -5,6 +5,11 @@ server:
 spring:
   application:
     name: my-first-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: ecommerce
+
 eureka:
   client:
     fetch-registry: true
@@ -15,3 +20,5 @@ eureka:
     prefer-ip-address: true
     ip-address: ${server.address}
     instance-id: ${server.address}:${random.value}
+
+
